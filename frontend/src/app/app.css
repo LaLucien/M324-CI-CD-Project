@@ -1,0 +1,91 @@
+:host {
+  --page-background: linear-gradient(135deg, #f6f2e8 0%, #f2f7fb 45%, #d9e8ef 100%);
+  --panel-background: rgba(255, 255, 255, 0.84);
+  --panel-border: rgba(11, 47, 64, 0.12);
+  --text-strong: #10212b;
+  --text-soft: #42606d;
+  --accent: #c26732;
+
+  display: block;
+  min-height: 100dvh;
+  background: var(--page-background);
+  color: var(--text-strong);
+  font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+}
+
+.page-shell {
+  min-height: 100dvh;
+  width: min(960px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 4rem 0 3rem;
+  display: grid;
+  gap: 1.25rem;
+  align-content: center;
+}
+
+.hero,
+.status-card {
+  background: var(--panel-background);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 60px rgba(16, 33, 43, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.hero {
+  padding: 2rem;
+}
+
+.eyebrow,
+.status-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.summary,
+.status-card p:last-child {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--text-soft);
+  max-width: 60ch;
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 1.25rem, 960px);
+    padding: 1.25rem 0;
+  }
+
+  .hero,
+  .status-card {
+    border-radius: 20px;
+  }
+
+  .hero {
+    padding: 1.5rem;
+  }
+}

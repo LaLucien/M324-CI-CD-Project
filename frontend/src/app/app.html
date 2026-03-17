@@ -1,0 +1,22 @@
+<main class="page-shell">
+  <section class="hero">
+    <p class="eyebrow">M324 • CI/CD Foundation</p>
+    <h1>{{ title() }}</h1>
+    <p class="summary">{{ description() }}</p>
+  </section>
+
+  <section class="status-card" aria-labelledby="deployment-status-title">
+    <p class="status-label">Current focus</p>
+    <h2 id="deployment-status-title">Pipeline-ready frontend baseline</h2>
+    <p>
+      This application stays intentionally small so the project can focus on linting, testing,
+      Docker packaging, and deployment automation with GitHub Actions.
+    </p>
+  </section>
+
+  <section class="status-card" aria-labelledby="deployment-url-title">
+    <p class="status-label">Deployment placeholder</p>
+    <h2 id="deployment-url-title">Public URL</h2>
+    <p>{{ deploymentStatus() }}</p>
+  </section>
+</main>

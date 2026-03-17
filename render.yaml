@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: m324-cicd-frontend
+    runtime: image
+    plan: free
+    region: frankfurt
+    image:
+      url: ghcr.io/lalucien/m324-cicd-frontend:latest
+    healthCheckPath: /
