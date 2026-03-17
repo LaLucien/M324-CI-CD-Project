@@ -14,14 +14,65 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should display a fact', async () => {
     const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('M324 CI/CD Project');
-    expect(compiled.textContent).toContain(
-      'A minimal Angular SSR application used to build and validate a CI/CD pipeline foundation.',
-    );
-    expect(compiled.textContent).toContain('Public Render deployment URL will be added here.');
+    const factText = compiled.querySelector('.fact-text')?.textContent?.trim();
+
+    expect(compiled.querySelector('h1')?.textContent).toContain('Fun Fact App');
+    expect(factText).toBeTruthy();
+    expect(factText).toBe(fixture.componentInstance.currentFact.text);
+  });
+
+  it('should change the displayed fact when clicking "Next fact"', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const nextFactButton = compiled.querySelectorAll('button')[0] as HTMLButtonElement;
+    const firstFact = fixture.componentInstance.currentFact.text;
+
+    nextFactButton.click();
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.currentFact.text).not.toBe(firstFact);
+  });
+
+  it('should add the current fact to favorites when clicking "Favorite"', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const favoriteButton = compiled.querySelectorAll('button')[1] as HTMLButtonElement;
+    const currentFactText = fixture.componentInstance.currentFact.text;
+
+    favoriteButton.click();
+    fixture.detectChanges();
+
+    const favoriteItems = compiled.querySelectorAll('li');
+    expect(fixture.componentInstance.favorites.length).toBe(1);
+    expect(fixture.componentInstance.favorites[0].text).toBe(currentFactText);
+    expect(favoriteItems.length).toBe(1);
+  });
+
+  it('should not add duplicate favorites', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const favoriteButton = compiled.querySelectorAll('button')[1] as HTMLButtonElement;
+
+    favoriteButton.click();
+    favoriteButton.click();
+    fixture.detectChanges();
+
+    const favoriteItems = compiled.querySelectorAll('li');
+    expect(fixture.componentInstance.favorites.length).toBe(1);
+    expect(favoriteItems.length).toBe(1);
   });
 });

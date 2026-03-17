@@ -7,7 +7,6 @@ This repository contains a minimal Angular SSR frontend and a complete CI/CD flo
 - `frontend/` - Angular SSR application
 - `.github/workflows/ci-cd.yml` - CI, image publish, and deploy workflow
 - `render.yaml` - Render Blueprint service definition
-- `assignement.md` - assignment analysis and planning notes
 
 ## Local Setup
 
@@ -126,4 +125,4 @@ No extra registry secret is required because GitHub Actions publishes to GHCR us
 
 ## Public Deployment URL
 
-Render deployment URL: `TBD`
+Render deployment URL: [https://m324-cicd-frontend.onrender.com/](https://m324-cicd-frontend.onrender.com/)

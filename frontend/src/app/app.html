@@ -1,22 +1,41 @@
-<main class="page-shell">
-  <section class="hero">
-    <p class="eyebrow">M324 • CI/CD Foundation</p>
-    <h1>{{ title() }}</h1>
-    <p class="summary">{{ description() }}</p>
-  </section>
-
-  <section class="status-card" aria-labelledby="deployment-status-title">
-    <p class="status-label">Current focus</p>
-    <h2 id="deployment-status-title">Pipeline-ready frontend baseline</h2>
-    <p>
-      This application stays intentionally small so the project can focus on linting, testing,
-      Docker packaging, and deployment automation with GitHub Actions.
+<main class="page">
+  <section class="content">
+    <p class="eyebrow">M324 CI/CD Project</p>
+    <h1>Fun Fact App</h1>
+    <p class="intro">
+      A lightweight app for the project pipeline, now showing the content created on the
+      `feat/fun-fact-app` branch.
     </p>
-  </section>
 
-  <section class="status-card" aria-labelledby="deployment-url-title">
-    <p class="status-label">Deployment placeholder</p>
-    <h2 id="deployment-url-title">Public URL</h2>
-    <p>{{ deploymentStatus() }}</p>
+    <article class="fact-card">
+      <p class="fact-text">{{ currentFact.text }}</p>
+
+      <div class="actions">
+        <button type="button" (click)="showNextFact()">Next fact</button>
+        <button type="button" class="secondary" (click)="addFavorite()">Favorite</button>
+      </div>
+    </article>
+
+    <p class="counter">Favorites: {{ favoritesCount }}</p>
+
+    <section class="favorites" aria-label="Favorite facts">
+      <h2>Favorite Facts</h2>
+
+      @if (favorites.length === 0) {
+        <p class="empty">No favorites yet.</p>
+      } @else {
+        <ul>
+          @for (fact of favorites; track fact.id) {
+            <li>{{ fact.text }}</li>
+          }
+        </ul>
+      }
+    </section>
+
+    <section class="deployment-note" aria-labelledby="deployment-url-title">
+      <p class="status-label">Deployment placeholder</p>
+      <h2 id="deployment-url-title">Public URL</h2>
+      <p>{{ deploymentStatus }}</p>
+    </section>
   </section>
 </main>
