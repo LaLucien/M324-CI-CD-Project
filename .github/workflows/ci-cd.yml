@@ -41,11 +41,11 @@ jobs:
       - name: Run linting
         run: npm run lint
 
-      - name: Run unit tests
-        run: npm test
-
       - name: Build application
         run: npm run build
+
+      - name: Run unit tests
+        run: npm test
 
   publish_image:
     name: publish_image
