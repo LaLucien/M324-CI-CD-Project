@@ -22,13 +22,13 @@
       <h2>Favorite Facts</h2>
 
       @if (favorites.length === 0) {
-      <p class="empty">No favorites yet.</p>
+        <p class="empty">No favorites yet.</p>
       } @else {
-      <ul>
-        @for (fact of favorites; track fact.id) {
-        <li>{{ fact.text }}</li>
-        }
-      </ul>
+        <ul>
+          @for (fact of favorites; track fact.id) {
+            <li>{{ fact.text }}</li>
+          }
+        </ul>
       }
     </section>
   </section>
