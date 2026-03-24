@@ -97,7 +97,7 @@ The GitHub Actions workflow is split into three jobs:
 
 Behavior:
 
-- pull requests to `master` run `ci` only
+- pull requests to `master` run `ci` and refresh a sticky PR comment with the CI result, production URL, and expected image tag after merge
 - pushes to `master` run `ci`, publish the GHCR image, and trigger Render deployment
 - pushes of tags matching `v*` run `ci`, publish `latest` plus the version tag, and trigger Render deployment
 

@@ -3,6 +3,7 @@ name: ci-cd
 permissions:
   contents: read
   packages: write
+  pull-requests: write
 
 on:
   push:
@@ -46,6 +47,35 @@ jobs:
 
       - name: Run unit tests
         run: npm test
+
+  pr_comment:
+    name: pr_comment
+    runs-on: ubuntu-latest
+    needs: ci
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Prepare PR summary values
+        id: vars
+        shell: bash
+        env:
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          echo "short_sha=${PR_SHA::7}" >> "$GITHUB_OUTPUT"
+          echo "image_tag=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/m324-cicd-frontend:latest" >> "$GITHUB_OUTPUT"
+
+      - name: Update sticky PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: ci-status
+          message: |
+            ## CI status
+
+            CI passed and this PR is ready to merge.
+
+            - CI status: `passed`
+            - Production URL: `https://m324-cicd-frontend.onrender.com/`
+            - Docker image tag on merge: `${{ steps.vars.outputs.image_tag }}`
+            - PR commit SHA: `${{ steps.vars.outputs.short_sha }}`
 
   publish_image:
     name: publish_image
