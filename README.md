@@ -1,4 +1,4 @@
-# M324 CI/CD Project
+# M324 CI/CD Project [![ci-cd](https://github.com/LaLucien/M324-CI-CD-Project/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/LaLucien/M324-CI-CD-Project/actions/workflows/ci-cd.yml)
 
 This repository contains a minimal Angular SSR frontend and a complete CI/CD flow built around GitHub Actions, GitHub Container Registry, and Render. The app stays intentionally small so the main focus can remain on quality checks, container publishing, and automated deployment.
 
