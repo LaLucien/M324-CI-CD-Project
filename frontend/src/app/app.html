@@ -22,20 +22,14 @@
       <h2>Favorite Facts</h2>
 
       @if (favorites.length === 0) {
-        <p class="empty">No favorites yet.</p>
+      <p class="empty">No favorites yet.</p>
       } @else {
-        <ul>
-          @for (fact of favorites; track fact.id) {
-            <li>{{ fact.text }}</li>
-          }
-        </ul>
+      <ul>
+        @for (fact of favorites; track fact.id) {
+        <li>{{ fact.text }}</li>
+        }
+      </ul>
       }
-    </section>
-
-    <section class="deployment-note" aria-labelledby="deployment-url-title">
-      <p class="status-label">Deployment placeholder</p>
-      <h2 id="deployment-url-title">Public URL</h2>
-      <p>{{ deploymentStatus }}</p>
     </section>
   </section>
 </main>
